@@ -1,4 +1,4 @@
-document.getElementById('run').onclick = () => {
+const run = () => {
     let host = document.getElementById('host').value;
     let pass = document.getElementById('pass').value;
     
@@ -19,6 +19,11 @@ document.getElementById('run').onclick = () => {
         })
     }).then(res => res.json()).then(data => {
         alert(data.message);
-        document.getElementById('out').innerText = data.outputs;
+        document.getElementById('out').innerText = data.output;
     });
+}
+
+document.getElementById('run').onclick = run;
+window.onkeypress = (e) => {
+    if (e.key === 'Enter') run();
 }
