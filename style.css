@@ -1,35 +1,29 @@
 * {
-    padding: .5rem;
-    color: white;
+    margin: .5rem;
+    color-scheme: dark;
     font-family: 'Courier New', Courier, monospace;
 }
 
-input, button, pre {
-    border: .1em solid #ffffff;
+
+dialog {
     background: black;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-h1, h2, h6, p, a {
-    margin: 0;
-}
-
-body {
-    background: linear-gradient(45deg, #012b11, #000000) black;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-div#info input {
+dialog input, dialog button {
     display: block;
-    width: 14rem;
 }
 
-div#io input { width: 11rem; }
-div#io button { width: 3rem; }
+div button {
+    padding: .5em;
+}
+
+pre {
+    padding: 1em;
+    width: 97%;
+    overflow-x: scroll;
+}

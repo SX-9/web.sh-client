@@ -1,33 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <script src="life.js" defer></script>
     <title>web.sh</title>
-</head>
-<body>
-
-    <div>
-        <h1><a href="https://github.com/SX-9/web.sh">WEB.SH</a></h1>
-        <p>Access Your Terminal <strong>From Anywhere</strong></p>
-    </div>
-
-    <div id="info">
-        <br><h2>Server Info</h2>
-        <h6>* Server Must Have <a href="https://www.npmjs.com/package/@sx9dev/web.sh">WEB.SH</a> Running</h6>
-        <input type="text" id="host" placeholder="Server Address" value="localhost">
-        <input type="password" id="pass" placeholder="Password" value="HelloWorld">
-    </div>
-
-    <div id="io">
-        <br><h2>Run Command</h2>
-        <input type="text" id="cmd" placeholder="echo hi">
-        <button id="run">Run</button>
-        <pre id="out">Output Displayed Here</pre>
-    </div>
-
-</body>
+  </head>
+  <body>
+    <h1>WEB.SH Dashboard</h1>
+    <dialog id="info">
+			<form id="server">
+				<label for="host">Hostname / IP:</label>
+        <input type="text" name="host" id="host" required value="localhost" />
+        <label for="pass">Password:</label>
+        <input type="password" name="pass" id="pass" required autofocus />
+        <button type="submit">Save</button>
+      </form>
+    </dialog>
+		<button onclick="run(prompt('Enter A Command:').split(' '))">Manual Run</button>
+    <button onclick="$('#info').showModal()">Set Server Details</button>
+    <button
+		  onclick="create(prompt('Enter Space Separated Command:'), prompt('Enter Name For Command:'))">
+		Create New Action
+		</button>
+		<hr size="1">
+		<h2>Actions:</h2>
+  	<div></div>
+		<hr size="1">
+		<pre id="out">Output Here</pre>
+  </body>
 </html>
