@@ -3,7 +3,7 @@ const { host, pass, cmds } = localStorage;
 let saved = cmds ? JSON.parse(cmds) : [];
 
 function run(cmd) {
-	$('#out').innerText = 'Loading...';
+  $("#out").innerText = "Loading...";
   fetch(`http://${host}:6942/run?pass=${pass}`, {
     method: "POST",
     headers: {
@@ -26,27 +26,40 @@ function create(cmd, name) {
 }
 
 function init(cmds) {
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker
+      .register("/sw.js")
+      .then((worker) => {
+        worker.active?.postMessage("cache");
+      })
+      .catch(console.error);
+  }
+
+  if (!host || !pass) $("#info").showModal();
+  $("#info").onsubmit = (e) => {
+    localStorage.setItem("host", $("#host").value);
+    localStorage.setItem("pass", $("#pass").value);
+  };
+
+  $("#host").value = host;
+  $("#pass").value = pass;
   $("div").innerHTML = "";
+
   cmds.forEach((cmd) => {
     const el = document.createElement("button");
     el.innerText = cmd.name;
     el.onclick = () => run(cmd.cmd);
-		el.oncontextmenu = () => del(cmd.name)
+    el.ondblclick = () => del(cmd.name);
     $("div").appendChild(el);
   });
 }
 
 function del(name) {
-	localStorage.setItem('cmds', JSON.stringify(saved.filter(obj => obj.name !== name)));
-	location.reload();
+  localStorage.setItem(
+    "cmds",
+    JSON.stringify(saved.filter((obj) => obj.name !== name))
+  );
+  location.reload();
 }
 
-if (!host || !pass) $("#info").showModal();
-$("#info").onsubmit = (e) => {
-  localStorage.setItem("host", $("#host").value);
-  localStorage.setItem("pass", $("#pass").value);
-};
-
-$("#host").value = host;
-$("#pass").value = pass;
 init(saved);
