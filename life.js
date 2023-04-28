@@ -26,6 +26,8 @@ function create(cmd, name) {
 }
 
 function init(cmds) {
+  location.protocol !== "https:" ? location.protocol = "https:" : null;
+  
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker
       .register("/sw.js")
