@@ -165,36 +165,99 @@
     />
   </head>
   <body>
-    <h1>WebSH Dashboard</h1>
     <dialog id="info">
       <form id="server">
-        <label for="host">Hostname / IP:</label>
+        <label for="host">Server Address:</label>
         <input
           type="text"
-          name="host"
           id="host"
-          required=""
           value="localhost"
+          required
         />
         <label for="pass">Password:</label>
-        <input type="password" name="pass" id="pass" required="" autofocus="" />
+        <input
+          type="password" 
+          id="pass" 
+          required 
+          autofocus
+        />
         <button type="submit">Save</button>
       </form>
     </dialog>
-    <button onclick="run(prompt('Enter A Command:').split(' '))">
-      Manual Run
-    </button>
-    <button onclick="$('#info').showModal()">Set Server Details</button>
-    <button
-      onclick="create(prompt('Enter Space Separated Command:'), prompt('Enter Name For Command:'))"
-    >
-      Create New Action
-    </button>
+    <dialog id="create">
+      <form id="command" onsubmit="create($('#cmd').value,$('#name').value,$('#stdin').value)">
+        <label for="cmd">Command:</label>
+        <input
+          type="text"
+          id="cmd"
+          placeholder="sudo -S whoami"
+          autocomplete="off"
+          required
+        />
+        <label for="name">Name:</label>
+        <input
+          type="text"
+          id="name"
+          placeholder="Display Name"
+          autocomplete="off"
+          required
+        />
+        <label for="stdin">Standard Input:</label>
+        <input
+          type="text"
+          id="stdin"
+          placeholder="optional"
+          autocomplete="off"
+        />
+        <button type="submit">Create</button>
+      </form>
+    </dialog>
+    <h1>WebSH Dashboard</h1>
+    <details open>
+      <summary>Controls</summary>
+      <button onclick="run(prompt('Enter A Command:').split(' '))">
+        Manual Run
+      </button>
+      <button onclick="$('#info').showModal()">Set Server Details</button>
+      <button
+        onclick="$('#create').showModal()"
+      >
+        Create New Action
+      </button>
+      <button
+        onclick="fullscreen()"
+      >
+        Fullscreen
+      </button>
+      <button
+        id="install"
+        onclick="install()"
+        style="display: none;"
+      >
+        Install PWA
+      </button>
+      <button
+        onclick="prompt('Action Buttons JSON', localStorage.cmds)"
+      >
+        Export Actions
+      </button>
+      <button
+        onclick="localStorage.cmds = prompt('Insert Action Buttons JSON'); location.reload()"
+      >
+        Import Actions
+      </button>
+    </details>
     <hr size="1" />
-    <h2>Actions:</h2>
-    <div></div>
-    <hr size="1" />
-    <pre id="out">Output Here</pre>
+    <div id="grp">
+      <div id="btns"></div>
+      <div>
+        <hr size="1" />
+        <details id="outs" open>
+          <summary>Output</summary>
+          <pre id="out">Output</pre>
+        </details>
+      </div>
+    </div>
     <hr size="1" />
     <p>
       Made By <a href="https://sx9.is-a.dev">sx9dev</a> | Powered By

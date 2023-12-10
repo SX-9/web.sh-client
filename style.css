@@ -21,12 +21,36 @@ dialog input, dialog button {
     display: block;
 }
 
-div button {
+div#btns button {
     padding: .5em;
 }
 
 pre {
     padding: 1em;
-    width: 97%;
     overflow-x: scroll;
+    max-width: 100%;
 }
+
+div.big {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr auto;
+}
+
+div#grp.big div#btns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(1em, 18.7vw));
+    grid-template-rows: repeat(auto-fit, minmax(1em, 20vh));
+    grid-gap: 1em;
+}
+
+div#grp.big div#btns button {
+    background-color: #000000;
+    border: 0.1em solid #ffffff;
+    padding: 1rem;
+}
+
+div#grp.big div pre {
+    max-height: 40vh;
+}
+

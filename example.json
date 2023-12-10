@@ -1,0 +1,1 @@
+[{"cmd":"cat /etc/os-release","name":"os"},{"cmd":"date","name":"date"},{"cmd":"cal","name":"calendar"},{"cmd":"uptime","name":"uptime"},{"cmd":"sudo -S whoami","name":"root","stdin":"3375"},{"cmd":"whoami","name":"who"},{"cmd":"notify-send hi","name":"notify"},{"cmd":"xfce4-terminal","name":"terminal","stdin":""},{"cmd":"ls -l /","name":"list"}]
