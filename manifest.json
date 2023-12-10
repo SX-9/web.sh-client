@@ -1,7 +1,7 @@
 {
   "name": "WebSH Client",
   "short_name": "WebSH",
-  "start_url": "/index.html",
+  "start_url": "/web.sh-client",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#111111",
